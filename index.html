@@ -4,32 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mobil Saha Satış Sistemi | XCMG × Hakan Makina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --orange: #F05A1A;
-    --dark: #1A1A1A;
-    --gray: #2C2C2C;
-    --light: #F5F5F5;
-    --white: #FFFFFF;
-    --accent: #FF8C00;
+    --orange:      #E8541A;
+    --orange-lt:   #FF6B35;
+    --orange-dim:  rgba(232,84,26,0.12);
+    --orange-dim2: rgba(232,84,26,0.22);
+    --bg:          #0C0E14;
+    --surface:     #13151F;
+    --surface-2:   #1A1D28;
+    --surface-3:   #21243300;
+    --border:      rgba(255,255,255,0.07);
+    --border-orange: rgba(232,84,26,0.3);
+    --text:        #ECEEF4;
+    --text-dim:    rgba(236,238,244,0.55);
+    --text-muted:  rgba(236,238,244,0.32);
+    --green:       #22C55E;
   }
 
   body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #111;
-    color: var(--white);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
     overflow: hidden;
     height: 100vh;
     width: 100vw;
   }
 
-  .presentation {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
+  .presentation { width: 100%; height: 100%; position: relative; }
 
   .slide {
     display: none;
@@ -37,19 +44,21 @@
     height: 100vh;
     position: absolute;
     top: 0; left: 0;
-    animation: fadeIn 0.4s ease;
+    animation: fadeIn 0.35s cubic-bezier(0.4,0,0.2,1);
   }
-
   .slide.active { display: flex; }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   /* ── COVER ── */
   .slide-cover {
-    background: linear-gradient(135deg, #1A1A1A 0%, #2a1a0e 50%, #1A1A1A 100%);
+    background:
+      radial-gradient(ellipse 80% 60% at 65% 35%, rgba(232,84,26,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(232,84,26,0.07) 0%, transparent 60%),
+      linear-gradient(160deg, #0F1018 0%, #0C0E14 100%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -61,49 +70,52 @@
   .slide-cover::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 60% 40%, rgba(240,90,26,0.25) 0%, transparent 70%);
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
   }
 
   .slide-cover .logo-bar {
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: 28px;
+    margin-bottom: 52px;
     z-index: 1;
   }
 
   .logo-xcmg {
     background: var(--orange);
     color: white;
-    font-size: 2.8rem;
-    font-weight: 900;
-    padding: 10px 28px;
-    letter-spacing: 4px;
-    clip-path: polygon(0 0, 96% 0, 100% 50%, 96% 100%, 0 100%, 4% 50%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    padding: 10px 26px;
+    letter-spacing: 5px;
+    clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%);
   }
 
   .logo-divider {
-    width: 2px;
-    height: 60px;
-    background: rgba(255,255,255,0.3);
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.2);
   }
 
   .logo-hakan {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 3px;
     text-transform: uppercase;
   }
 
   .slide-cover h1 {
-    font-size: 3.8rem;
-    font-weight: 900;
-    line-height: 1.1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.08;
     z-index: 1;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: -1px;
+    color: var(--text);
   }
 
   .slide-cover h1 span {
@@ -112,140 +124,155 @@
   }
 
   .slide-cover .subtitle {
-    margin-top: 24px;
-    font-size: 1.35rem;
-    color: rgba(255,255,255,0.65);
+    margin-top: 20px;
+    font-size: 1.15rem;
+    color: var(--text-dim);
     z-index: 1;
-    letter-spacing: 1px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
   }
 
   .slide-cover .tag {
-    margin-top: 40px;
-    background: var(--orange);
-    color: white;
-    font-size: 0.95rem;
-    font-weight: 700;
-    padding: 10px 30px;
-    letter-spacing: 3px;
+    margin-top: 44px;
+    border: 1px solid var(--border-orange);
+    background: var(--orange-dim);
+    color: var(--orange-lt);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 10px 28px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
+    border-radius: 2px;
     z-index: 1;
   }
 
   /* ── STANDARD SLIDE ── */
   .slide-std {
     flex-direction: column;
-    background: #1A1A1A;
+    background: var(--bg);
   }
 
   .slide-header {
-    background: var(--orange);
-    padding: 22px 60px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
+    position: relative;
+  }
+
+  .slide-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 64px; right: 64px;
+    height: 0;
   }
 
   .slide-header .slide-num {
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 600;
     letter-spacing: 3px;
-    opacity: 0.7;
+    color: var(--orange);
     text-transform: uppercase;
+    background: var(--orange-dim);
+    border: 1px solid var(--border-orange);
+    padding: 4px 12px;
+    border-radius: 2px;
   }
 
   .slide-header h2 {
-    font-size: 1.7rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
   }
 
   .slide-header .brand {
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 500;
     letter-spacing: 2px;
-    opacity: 0.8;
+    color: var(--text-muted);
     text-align: right;
+    text-transform: uppercase;
   }
 
   .slide-body {
     flex: 1;
-    padding: 50px 60px;
+    padding: 44px 64px;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
     overflow: hidden;
   }
 
   /* ── CARDS ── */
-  .cards {
-    display: grid;
-    gap: 20px;
-    width: 100%;
-  }
-
+  .cards { display: grid; gap: 18px; width: 100%; }
   .cards-2 { grid-template-columns: 1fr 1fr; }
   .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
   .cards-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
 
   .card {
-    background: #2a2a2a;
-    border-left: 4px solid var(--orange);
-    padding: 24px 26px;
-    border-radius: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--orange);
+    padding: 22px 24px;
+    border-radius: 6px;
+    transition: border-color 0.2s;
   }
 
   .card .card-icon {
-    font-size: 2rem;
+    font-size: 1.7rem;
     margin-bottom: 10px;
     display: block;
+    filter: grayscale(0.2);
   }
 
   .card h3 {
-    font-size: 1.05rem;
-    font-weight: 800;
+    font-size: 0.78rem;
+    font-weight: 700;
     color: var(--orange);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     margin-bottom: 8px;
   }
 
   .card p, .card li {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.6;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight: 400;
   }
 
   .card ul { padding-left: 16px; }
 
   /* ── BIG STATEMENT ── */
-  .big-statement {
-    text-align: center;
-    width: 100%;
-  }
+  .big-statement { text-align: center; width: 100%; }
 
   .big-statement .quote {
-    font-size: 2.8rem;
-    font-weight: 900;
-    line-height: 1.3;
-    color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+    letter-spacing: -0.5px;
   }
 
   .big-statement .quote span { color: var(--orange); }
 
   .big-statement .sub {
-    margin-top: 24px;
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 1px;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
   }
 
   /* ── STEPS ── */
   .steps {
     display: flex;
     align-items: flex-start;
-    gap: 0;
     width: 100%;
     justify-content: center;
   }
@@ -262,121 +289,233 @@
   .step:not(:last-child)::after {
     content: '→';
     position: absolute;
-    right: -12px;
-    top: 22px;
-    font-size: 1.5rem;
-    color: var(--orange);
+    right: -14px;
+    top: 16px;
+    font-size: 1.2rem;
+    color: var(--text-muted);
     z-index: 2;
   }
 
   .step-num {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: var(--orange);
     color: white;
-    font-size: 1.3rem;
-    font-weight: 900;
+    font-size: 1.2rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 14px;
     flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(232,84,26,0.3);
   }
 
   .step p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+    color: var(--text-dim);
     line-height: 1.5;
-    font-weight: 600;
-    padding: 0 8px;
+    font-weight: 500;
+    padding: 0 6px;
   }
 
   /* ── KPI ── */
   .kpi-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
     width: 100%;
   }
 
   .kpi-box {
-    background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
-    border: 1px solid rgba(240,90,26,0.3);
-    border-radius: 4px;
-    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
   }
 
   .kpi-box .kpi-label {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-weight: 600;
   }
 
   .kpi-box .kpi-val {
-    font-size: 3rem;
-    font-weight: 900;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
     color: var(--orange);
     line-height: 1;
+    letter-spacing: -1px;
   }
 
   .kpi-box .kpi-sub {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.4);
-    margin-top: 6px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-weight: 400;
   }
 
   /* ── BULLET LIST ── */
-  .bullet-list {
-    list-style: none;
-    width: 100%;
-  }
+  .bullet-list { list-style: none; width: 100%; }
 
   .bullet-list li {
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.85);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.02rem;
+    color: var(--text-dim);
     display: flex;
     align-items: center;
     gap: 16px;
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   .bullet-list li::before {
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: var(--orange);
     border-radius: 50%;
     flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(232,84,26,0.5);
   }
 
   /* ── TWO COL ── */
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 48px;
     width: 100%;
     align-items: start;
   }
 
   .col-title {
-    font-size: 0.8rem;
-    font-weight: 800;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
     color: var(--orange);
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--orange);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-orange);
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    background: var(--orange-dim);
+    border: 1px solid var(--border-orange);
+    border-radius: 6px;
+    padding: 18px 24px;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    text-align: center;
+    width: 100%;
+  }
+
+  .highlight strong { color: var(--orange); font-weight: 600; }
+
+  /* ── ICON GRID ── */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+
+  .icon-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px 14px;
+    text-align: center;
+    border-radius: 6px;
+    border-top: 2px solid var(--orange);
+  }
+
+  .icon-item .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .icon-item p { font-size: 0.85rem; color: var(--text-dim); font-weight: 500; line-height: 1.4; }
+
+  /* ── PILOT ── */
+  .pilot-box {
+    background: var(--surface);
+    border: 1px solid var(--border-orange);
+    border-radius: 10px;
+    padding: 40px 48px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pilot-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-lt), var(--orange));
+  }
+
+  .pilot-box h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    margin-bottom: 28px;
+  }
+
+  .pilot-items {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .pilot-item {
+    flex: 1;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .risk-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 10px 28px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 3px;
   }
 
   /* ── CLOSING ── */
   .slide-close {
-    background: linear-gradient(135deg, #1A1A1A 0%, #2a1a0e 50%, #1A1A1A 100%);
+    background:
+      radial-gradient(ellipse 70% 50% at 40% 60%, rgba(232,84,26,0.14) 0%, transparent 60%),
+      linear-gradient(160deg, #0F1018 0%, #0C0E14 100%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -388,184 +527,183 @@
   .slide-close::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 40% 60%, rgba(240,90,26,0.2) 0%, transparent 70%);
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
   }
 
   .slide-close h2 {
-    font-size: 3.2rem;
-    font-weight: 900;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 3.4rem;
+    font-weight: 800;
     z-index: 1;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    color: var(--text);
   }
 
   .slide-close h2 span { color: var(--orange); }
 
   .slide-close .tagline {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.6);
+    margin-top: 18px;
+    font-size: 1rem;
+    color: var(--text-muted);
     z-index: 1;
     letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
   }
 
   .slide-close .pillars {
-    margin-top: 50px;
+    margin-top: 52px;
     display: flex;
-    gap: 30px;
+    gap: 16px;
     z-index: 1;
   }
 
   .pillar {
-    background: rgba(240,90,26,0.15);
-    border: 1px solid rgba(240,90,26,0.4);
-    padding: 18px 32px;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    background: var(--surface);
+    border: 1px solid var(--border-orange);
+    padding: 16px 28px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    color: var(--text-dim);
+    line-height: 1.6;
   }
+
+  /* ── SOURCES SLIDE ── */
+  .slide-sources {
+    flex-direction: column;
+    background: var(--bg);
+  }
+
+  .sources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    overflow: auto;
+  }
+
+  .source-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .source-num {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border: 1px solid var(--border-orange);
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .source-info { flex: 1; min-width: 0; }
+
+  .source-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 3px;
+  }
+
+  .source-meta {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .source-link {
+    font-size: 0.7rem;
+    color: var(--orange);
+    text-decoration: none;
+    word-break: break-all;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .source-link:hover { opacity: 1; text-decoration: underline; }
 
   /* ── NAVIGATION ── */
   .nav {
     position: fixed;
-    bottom: 30px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     z-index: 100;
-    background: rgba(0,0,0,0.6);
-    padding: 10px 20px;
+    background: rgba(19,21,31,0.85);
+    border: 1px solid var(--border);
+    padding: 8px 18px;
     border-radius: 50px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   .nav button {
     background: none;
-    border: 2px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 8px 20px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 7px 18px;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     transition: all 0.2s;
   }
 
   .nav button:hover {
     background: var(--orange);
     border-color: var(--orange);
+    color: white;
   }
 
   .nav .progress {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 1px;
-    min-width: 60px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    min-width: 48px;
     text-align: center;
+    font-weight: 500;
   }
 
-  .nav .dots {
-    display: flex;
-    gap: 6px;
-  }
+  .nav .dots { display: flex; gap: 5px; }
 
   .dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.25);
+    background: var(--border);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s;
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .dot.active {
     background: var(--orange);
-    width: 20px;
-    border-radius: 4px;
-  }
-
-  /* ── HIGHLIGHT BOX ── */
-  .highlight {
-    background: linear-gradient(135deg, rgba(240,90,26,0.15), rgba(240,90,26,0.05));
-    border: 1px solid rgba(240,90,26,0.35);
-    border-radius: 4px;
-    padding: 20px 26px;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.6;
-    text-align: center;
-    width: 100%;
-  }
-
-  .highlight strong { color: var(--orange); font-size: 1.1rem; }
-
-  /* ── ICON GRID ── */
-  .icon-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    width: 100%;
-  }
-
-  .icon-item {
-    background: #222;
-    padding: 28px 16px;
-    text-align: center;
-    border-top: 3px solid var(--orange);
-  }
-
-  .icon-item .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
-  .icon-item p { font-size: 0.9rem; color: rgba(255,255,255,0.75); font-weight: 600; line-height: 1.4; }
-
-  /* ── PILOT ── */
-  .pilot-box {
-    background: linear-gradient(135deg, rgba(240,90,26,0.1), rgba(240,90,26,0.03));
-    border: 2px solid var(--orange);
-    padding: 40px 50px;
-    text-align: center;
-    width: 100%;
-  }
-
-  .pilot-box h3 {
-    font-size: 1.4rem;
-    color: var(--orange);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-  }
-
-  .pilot-items {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 24px;
-  }
-
-  .pilot-item {
-    flex: 1;
-    background: rgba(0,0,0,0.3);
-    padding: 16px;
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.8);
-    font-weight: 600;
-  }
-
-  .risk-badge {
-    display: inline-block;
-    background: var(--orange);
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 800;
-    padding: 10px 30px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    width: 18px;
+    border-radius: 3px;
+    border-color: var(--orange);
   }
 
   @media print {
@@ -584,10 +722,10 @@
     <div class="logo-bar">
       <div class="logo-xcmg">XCMG</div>
       <div class="logo-divider"></div>
-      <div class="logo-hakan">HAKAN MAKİNA</div>
+      <div class="logo-hakan">Hakan Makina</div>
     </div>
-    <h1>MOBİL SAHA<span>SATIŞ SİSTEMİ</span></h1>
-    <p class="subtitle">Showroom'u Müşterinin Ayağına Götürüyoruz</p>
+    <h1>Mobil Saha<span>Satış Sistemi</span></h1>
+    <p class="subtitle">Showroom'u müşterinin ayağına götürüyoruz</p>
     <div class="tag">Saha Satış · Hızlı Teklif · Marka Temsili</div>
   </div>
 
@@ -624,7 +762,7 @@
     </div>
   </div>
 
-  <!-- 3. ANA MESAJ -->
+  <!-- 3. VİZYON -->
   <div class="slide slide-std" id="slide-3">
     <div class="slide-header">
       <span class="slide-num">02 / Vizyon</span>
@@ -638,16 +776,16 @@
           müşterinin ayağına götürüyoruz."
         </div>
         <p class="sub">Mobil araç · Saha ekibi · Anında teklif · Sahada satış</p>
-        <div style="margin-top:40px;display:flex;gap:24px;justify-content:center">
-          <div class="card" style="text-align:left;max-width:220px">
+        <div style="margin-top:40px;display:flex;gap:20px;justify-content:center">
+          <div class="card" style="text-align:left;max-width:200px">
             <h3>Ulaş</h3>
             <p>Showroom'a gelmeyen müşteriye git</p>
           </div>
-          <div class="card" style="text-align:left;max-width:220px">
-            <h3>Etkilе</h3>
+          <div class="card" style="text-align:left;max-width:200px">
+            <h3>Etkile</h3>
             <p>Güçlü marka ve ürün deneyimi sun</p>
           </div>
-          <div class="card" style="text-align:left;max-width:220px">
+          <div class="card" style="text-align:left;max-width:200px">
             <h3>Sat</h3>
             <p>Yerinde teklif oluştur, anında kapat</p>
           </div>
@@ -656,10 +794,10 @@
     </div>
   </div>
 
-  <!-- NEW: KÜRESEL VERİ -->
+  <!-- 4. KÜRESEL VERİ -->
   <div class="slide slide-std" id="slide-x1">
     <div class="slide-header">
-      <span class="slide-num">03 / Küresel Veri</span>
+      <span class="slide-num">03 / Küresel Araştırma</span>
       <h2>Dünya Bize Hak Veriyor</h2>
       <div class="brand">XCMG × Hakan Makina</div>
     </div>
@@ -667,96 +805,117 @@
       <div class="cards cards-3" style="align-self:stretch">
         <div class="card">
           <span class="card-icon">📊</span>
-          <h3>McKinsey</h3>
-          <p>Hibrit + saha satış modeli geleneksel modele göre <strong style="color:var(--orange)">%50 daha fazla gelir</strong> üretiyor. Yüksek büyüme gösteren B2B şirketlerin <strong style="color:var(--orange)">%57'si</strong> aktif saha çalışması yapıyor.</p>
+          <h3>McKinsey — 2024</h3>
+          <p>Saha dahil hibrit satış modeli tek kanallı modele göre <strong style="color:var(--orange)">%50 daha fazla gelir</strong> üretiyor. Yüksek büyüme gösteren B2B şirketlerin <strong style="color:var(--orange)">%57'si</strong> aktif saha çalışması yapıyor.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [1][2]</p>
         </div>
         <div class="card">
           <span class="card-icon">🎯</span>
-          <h3>Saha vs. Showroom</h3>
-          <p>Saha satış temsilcileri nitelikli müşterinin <strong style="color:var(--orange)">%40'ını</strong> satışa dönüştürüyor — showroom/içeriden satışta bu oran yalnızca <strong style="color:var(--orange)">%20</strong>. Saha, dönüşümü 2 katına çıkarıyor.</p>
+          <h3>SPOTIO — 2025</h3>
+          <p>Saha satış temsilcileri nitelikli müşterinin <strong style="color:var(--orange)">%40'ını</strong> satışa dönüştürüyor — showroom/içeriden satışta bu oran yalnızca <strong style="color:var(--orange)">%20</strong>. Saha, dönüşümü <strong style="color:var(--orange)">2 katına</strong> çıkarıyor.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [6]</p>
         </div>
         <div class="card">
           <span class="card-icon">🏗️</span>
-          <h3>Demo Etkisi</h3>
-          <p>İş makinası sektöründe müşterinin sahasında yapılan demolar ortalama <strong style="color:var(--orange)">%69 satış kapama oranı</strong> sağlıyor. En iyi uygulamalarda bu oran <strong style="color:var(--orange)">%90'a</strong> ulaşıyor.</p>
+          <h3>Farm Equipment Mag.</h3>
+          <p>İş makinası sektöründe sahada yapılan demolar ortalama <strong style="color:var(--orange)">%69 satış kapama oranı</strong> sağlıyor. En iyi uygulamalarda bu oran <strong style="color:var(--orange)">%90'a</strong> ulaşıyor.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [7]</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🤝</span>
+          <h3>Salesforce — 2024</h3>
+          <p>Satış temsilcilerinin <strong style="color:var(--orange)">%87'si</strong>, yüksek değerli anlaşmalar için yüz yüze temasın hâlâ kritik olduğunu söylüyor.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [4]</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">👁️</span>
+          <h3>Gartner — 2025</h3>
+          <p>B2B alıcıları satın alma sürecinin yalnızca <strong style="color:var(--orange)">%17'sinde</strong> tedarikçiyle görüşüyor. Showroom beklemek, kararın <strong style="color:var(--orange)">%83'ünü</strong> kaçırmak demek.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [3]</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">🚀</span>
+          <h3>Forrester — 2025</h3>
+          <p>Genç B2B alıcıların <strong style="color:var(--orange)">%40'ı</strong> uzman ile yüz yüze görüşmeyi en değerli satın alma deneyimi olarak tanımlıyor.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [5]</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- NEW: XCMG TÜRKİYE -->
+  <!-- 5. XCMG TÜRKİYE -->
   <div class="slide slide-std" id="slide-x2">
     <div class="slide-header">
       <span class="slide-num">04 / XCMG Türkiye</span>
       <h2>XCMG Türkiye: Talep Kanalı Aşıyor</h2>
       <div class="brand">XCMG × Hakan Makina</div>
     </div>
-    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:24px">
+    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:22px">
       <div class="kpi-grid">
         <div class="kpi-box">
-          <div class="kpi-label">Pazar Payı</div>
+          <div class="kpi-label">Pazar Sıralaması</div>
           <div class="kpi-val">#1</div>
-          <div class="kpi-sub">Türkiye'nin 1 numaralı iş makinası markası</div>
+          <div class="kpi-sub">Türkiye'nin 1 numaralı iş makinası markası — Komatsu, CAT, Volvo CE önünde</div>
         </div>
         <div class="kpi-box">
           <div class="kpi-label">Yıllık Büyüme</div>
           <div class="kpi-val">3×</div>
-          <div class="kpi-sub">Merkez hedefini 2 katına çıkararak aştı</div>
+          <div class="kpi-sub">Satışları üçe katladı; merkez hedefini 2 katına çıkararak aştı</div>
         </div>
         <div class="kpi-box">
-          <div class="kpi-label">Stok Durumu</div>
+          <div class="kpi-label">2023 Stok</div>
           <div class="kpi-val">%100</div>
-          <div class="kpi-sub">2023'te gelen tüm makinalar varıştan önce satıldı</div>
+          <div class="kpi-sub">Gelen tüm makinalar Türkiye'ye varmadan önce satıldı — talep arzı aştı</div>
         </div>
         <div class="kpi-box">
           <div class="kpi-label">Pazar Büyümesi</div>
           <div class="kpi-val">%5.3</div>
-          <div class="kpi-sub">Yıllık büyüme — 2029'da 34.388 birim öngörülüyor</div>
+          <div class="kpi-sub">Yıllık CAGR — 2029'da 34.388 birim öngörülüyor (ResearchAndMarkets)</div>
         </div>
       </div>
-      <div class="highlight" style="background:rgba(240,90,26,0.2);border-color:var(--orange)">
-        <strong>Sorun ürün değil, erişim.</strong> Talep var; ama Anadolu'daki her şantiye, taş ocağı ve köy inşaatına ulaşamıyoruz. Mobil sistem bu boşluğu kapatır.
+      <div class="highlight" style="background:var(--orange-dim2);border-color:var(--orange)">
+        <strong>Sorun ürün değil, erişim.</strong> Talep zaten var — ama Anadolu'daki şantiyeler, taş ocakları ve köy inşaatları hâlâ ulaşılmayı bekliyor. Mobil sistem bu boşluğu kapatır.
       </div>
     </div>
   </div>
 
-  <!-- 4. ZATEN SAHADAYIZ -->
+  <!-- 6. ZATEN SAHADAYIZ -->
   <div class="slide slide-std" id="slide-4">
     <div class="slide-header">
       <span class="slide-num">05 / Fırsat</span>
       <h2>Zaten Sahadayız</h2>
       <div class="brand">XCMG × Hakan Makina</div>
     </div>
-    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:30px">
+    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:28px">
       <div class="highlight">
         Köy, kasaba, şantiye ve hafriyat alanlarında <strong>aktif saha varlığımız</strong> var.<br>
         Gün içinde <strong>yüksek müşteri temas potansiyelimiz</strong> mevcut.
       </div>
       <div class="cards cards-4">
-        <div class="card" style="text-align:center;padding:28px 16px">
+        <div class="card" style="text-align:center;padding:26px 14px">
           <span class="card-icon">🏗️</span>
           <h3>Şantiyeler</h3>
         </div>
-        <div class="card" style="text-align:center;padding:28px 16px">
+        <div class="card" style="text-align:center;padding:26px 14px">
           <span class="card-icon">⛏️</span>
           <h3>Hafriyat</h3>
         </div>
-        <div class="card" style="text-align:center;padding:28px 16px">
+        <div class="card" style="text-align:center;padding:26px 14px">
           <span class="card-icon">🏘️</span>
           <h3>Köy & Kasaba</h3>
         </div>
-        <div class="card" style="text-align:center;padding:28px 16px">
+        <div class="card" style="text-align:center;padding:26px 14px">
           <span class="card-icon">🛣️</span>
           <h3>Altyapı</h3>
         </div>
       </div>
-      <div class="highlight" style="background:rgba(240,90,26,0.2);border-color:var(--orange)">
+      <div class="highlight" style="background:var(--orange-dim2);border-color:var(--orange)">
         <strong>Doğru sistemle bu temas satışa dönüşür.</strong>
       </div>
     </div>
   </div>
 
-  <!-- 5. NASIL ÇALIŞIR -->
+  <!-- 7. NASIL ÇALIŞIR -->
   <div class="slide slide-std" id="slide-5">
     <div class="slide-header">
       <span class="slide-num">06 / Süreç</span>
@@ -785,15 +944,15 @@
           <div class="step-num">5</div>
           <p>Anında<br>Teklif</p>
         </div>
-        <div class="step" style="position:relative">
-          <div class="step-num" style="background:#28a745">6</div>
+        <div class="step">
+          <div class="step-num" style="background:var(--green);box-shadow:0 0 20px rgba(34,197,94,0.35)">6</div>
           <p>Satış &<br>Sipariş</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 6. DONANIM -->
+  <!-- 8. DONANIM -->
   <div class="slide slide-std" id="slide-6">
     <div class="slide-header">
       <span class="slide-num">07 / Donanım</span>
@@ -825,7 +984,7 @@
     </div>
   </div>
 
-  <!-- 7. KAZANIMLAR -->
+  <!-- 9. KAZANIMLAR -->
   <div class="slide slide-std" id="slide-7">
     <div class="slide-header">
       <span class="slide-num">08 / Kazanımlar</span>
@@ -865,7 +1024,7 @@
     </div>
   </div>
 
-  <!-- NEW: GLOBAL ÖRNEKLER -->
+  <!-- 10. GLOBAL ÖRNEKLER -->
   <div class="slide slide-std" id="slide-x3">
     <div class="slide-header">
       <span class="slide-num">09 / Global Kanıt</span>
@@ -878,64 +1037,68 @@
           <span class="card-icon">🚛</span>
           <h3>Vertiv (ABD)</h3>
           <p>2 mobil araçla 6 ayda <strong style="color:var(--orange)">100+ müşteri ziyareti.</strong> Endüstriyel ekipmanı fabrika müdürlerine sahada sundu; showroom beklemedi.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [11]</p>
         </div>
         <div class="card">
           <span class="card-icon">🖥️</span>
           <h3>Stratasys</h3>
           <p>Özel mobil showroom tırı ile <strong style="color:var(--orange)">11 ay</strong> boyunca müşteri tesislerini dolaştı. Planlanan 6 ay, başarı nedeniyle uzatıldı.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [12]</p>
         </div>
         <div class="card">
           <span class="card-icon">🌾</span>
           <h3>John Deere / Kubota</h3>
           <p>Tarım ve iş makinası ekipmanını <strong style="color:var(--orange)">çiftçinin tarlasına, şantiyeye</strong> götür — orada demo yap. Uygulayan bayiler rakip müşterilerini alıyor.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [7]</p>
         </div>
         <div class="card">
           <span class="card-icon">📈</span>
           <h3>Mobil Roadshow Verisi</h3>
-          <p>Canlı demo görenların <strong style="color:var(--orange)">%98'i</strong> satın almaya daha yatkın. Aktivasyon haftasında bölgesel satış artışı: <strong style="color:var(--orange)">%18+.</strong> ROI: 50:1'e kadar.</p>
+          <p>Canlı demo görenların <strong style="color:var(--orange)">%98'i</strong> satın almaya daha yatkın. Aktivasyon haftasında bölgesel satış artışı: <strong style="color:var(--orange)">%18+.</strong> Belgelenmiş ROI: <strong style="color:var(--orange)">50:1'e</strong> kadar.</p>
+          <p style="margin-top:8px;font-size:0.75rem;color:var(--text-muted)">Kaynak [11]</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 8. KPI -->
+  <!-- 11. KPI -->
   <div class="slide slide-std" id="slide-8">
     <div class="slide-header">
       <span class="slide-num">10 / KPI</span>
       <h2>Performans Göstergeleri</h2>
       <div class="brand">XCMG × Hakan Makina</div>
     </div>
-    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:30px">
+    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:28px">
       <div class="kpi-grid">
         <div class="kpi-box">
           <div class="kpi-label">Günlük Ziyaret</div>
           <div class="kpi-val">—</div>
-          <div class="kpi-sub">Hedef belirlenmeli</div>
+          <div class="kpi-sub">Pilot ile belirlenecek</div>
         </div>
         <div class="kpi-box">
           <div class="kpi-label">Günlük Teklif</div>
           <div class="kpi-val">—</div>
-          <div class="kpi-sub">Hedef belirlenmeli</div>
+          <div class="kpi-sub">Pilot ile belirlenecek</div>
         </div>
         <div class="kpi-box">
           <div class="kpi-label">Satış Dönüş Oranı</div>
           <div class="kpi-val">—%</div>
-          <div class="kpi-sub">Hedef belirlenmeli</div>
+          <div class="kpi-sub">Pilot ile belirlenecek</div>
         </div>
         <div class="kpi-box">
           <div class="kpi-label">Aylık Satış Katkısı</div>
           <div class="kpi-val">—</div>
-          <div class="kpi-sub">Hedef belirlenmeli</div>
+          <div class="kpi-sub">Pilot ile belirlenecek</div>
         </div>
       </div>
       <div class="highlight">
         KPI hedefleri pilot çalışma başlamadan önce ekiple birlikte belirlenecektir.<br>
-        <strong>Sektör referansı:</strong> İş makinası sektöründe saha demosu kapama oranı ortalama <strong>%69</strong>, en iyi uygulamalarda <strong>%90</strong> (Farm Equipment Magazine).
+        <strong>Sektör benchmark'ı:</strong> İş makinası sektöründe saha demosu kapama oranı ortalama <strong>%69</strong>, en iyi uygulamalarda <strong>%90</strong>. (Farm Equipment Magazine [7])
       </div>
     </div>
   </div>
 
-  <!-- 9. PİLOT -->
+  <!-- 12. PİLOT -->
   <div class="slide slide-std" id="slide-9">
     <div class="slide-header">
       <span class="slide-num">11 / Pilot</span>
@@ -944,7 +1107,7 @@
     </div>
     <div class="slide-body" style="justify-content:center">
       <div class="pilot-box">
-        <h3>Pilot Plan</h3>
+        <h3>Pilot Plan — Düşük Risk, Yüksek Öğrenme</h3>
         <div class="pilot-items">
           <div class="pilot-item">📍 Seçili Bölgelerde<br>Uygulama</div>
           <div class="pilot-item">📊 Performans<br>Ölçümü</div>
@@ -956,10 +1119,10 @@
     </div>
   </div>
 
-  <!-- 10. NEDEN -->
+  <!-- 13. NEDEN -->
   <div class="slide slide-std" id="slide-10">
     <div class="slide-header">
-      <span class="slide-num">12 / Neden?</span>
+      <span class="slide-num">12 / Özet</span>
       <h2>Neden Bu Sistem?</h2>
       <div class="brand">XCMG × Hakan Makina</div>
     </div>
@@ -970,11 +1133,12 @@
         <li>Rakiplerden ayrıştırır — sahada profesyonel farklılaşma sağlar</li>
         <li>Marka görünürlüğünü artırır — her saha ziyareti canlı reklama dönüşür</li>
         <li>Satış sürecini hızlandırır — teklif anında, karar yerinde</li>
+        <li>Dünya genelinde kanıtlanmış model — Vertiv, Stratasys, John Deere uyguluyor</li>
       </ul>
     </div>
   </div>
 
-  <!-- 11. KAPANIŞ -->
+  <!-- 14. KAPANIŞ -->
   <div class="slide slide-close" id="slide-11">
     <h2>Birlikte<br><span>Daha Güçlüyüz.</span></h2>
     <p class="tagline">XCMG × Hakan Makina · Mobil Saha Satış Sistemi</p>
@@ -985,13 +1149,122 @@
     </div>
   </div>
 
+  <!-- 15. KAYNAKLAR -->
+  <div class="slide slide-sources" id="slide-sources">
+    <div class="slide-header">
+      <span class="slide-num">Ek / Kaynaklar</span>
+      <h2>Araştırma Kaynakları</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body" style="align-items:flex-start;padding-top:32px;padding-bottom:80px">
+      <div class="sources-grid">
+        <div class="source-item">
+          <div class="source-num">1</div>
+          <div class="source-info">
+            <div class="source-title">The Future of B2B Sales is Hybrid</div>
+            <div class="source-meta">McKinsey & Company, 2022</div>
+            <a class="source-link" href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-future-of-b2b-sales-is-hybrid" target="_blank">mckinsey.com → future-of-b2b-sales-is-hybrid</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">2</div>
+          <div class="source-info">
+            <div class="source-title">Five Fundamental Truths: How B2B Winners Keep Growing</div>
+            <div class="source-meta">McKinsey B2B Pulse Survey, 2024</div>
+            <a class="source-link" href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/five-fundamental-truths-how-b2b-winners-keep-growing" target="_blank">mckinsey.com → five-fundamental-truths</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">3</div>
+          <div class="source-info">
+            <div class="source-title">By 2030, 75% of B2B Buyers Will Prefer Human Interaction</div>
+            <div class="source-meta">Gartner Press Release, Ağustos 2025</div>
+            <a class="source-link" href="https://www.gartner.com/en/newsroom/press-releases/2025-08-25-gartner-says-by-2030-that-75-percent-of-b2b-buyers-will-prefer-sales-experiences-that-prioritize-human-interaction-over-ai" target="_blank">gartner.com → 75-percent-b2b-buyers-human-interaction</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">4</div>
+          <div class="source-info">
+            <div class="source-title">State of Sales Report, 5th Edition</div>
+            <div class="source-meta">Salesforce, 2024</div>
+            <a class="source-link" href="https://www.salesforce.com/sales/state-of-sales/sales-statistics/" target="_blank">salesforce.com → state-of-sales-statistics</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">5</div>
+          <div class="source-info">
+            <div class="source-title">B2B Marketing & Sales Predictions 2025</div>
+            <div class="source-meta">Forrester Research, 2025</div>
+            <a class="source-link" href="https://www.forrester.com/press-newsroom/forrester-predictions-2025-b2b-marketing-sales/" target="_blank">forrester.com → predictions-2025-b2b-marketing-sales</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">6</div>
+          <div class="source-info">
+            <div class="source-title">140+ Sales Statistics — Outside vs. Inside Sales</div>
+            <div class="source-meta">SPOTIO, 2025–2026</div>
+            <a class="source-link" href="https://spotio.com/blog/sales-statistics/" target="_blank">spotio.com → sales-statistics</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">7</div>
+          <div class="source-info">
+            <div class="source-title">Winning Equipment On-Farm Demo Programs</div>
+            <div class="source-meta">Farm Equipment Magazine (çok baskılı)</div>
+            <a class="source-link" href="https://www.farm-equipment.com/articles/11897-winning-equipment-on-farm-demo-programs" target="_blank">farm-equipment.com → winning-equipment-on-farm-demo-programs</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">8</div>
+          <div class="source-info">
+            <div class="source-title">XCMG Machinery 2024 Annual Report Highlights</div>
+            <div class="source-meta">XCMG Global, 2024</div>
+            <a class="source-link" href="https://www.xcmgglobal.com/news/news-detail-722.htm" target="_blank">xcmgglobal.com → 2024-annual-report</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">9</div>
+          <div class="source-info">
+            <div class="source-title">XCMG Turkey Introduction — Market Performance</div>
+            <div class="source-meta">XCMG Global</div>
+            <a class="source-link" href="https://www.xcmgglobal.com/news/news-detail-651.htm" target="_blank">xcmgglobal.com → turkey-introduction</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">10</div>
+          <div class="source-info">
+            <div class="source-title">Turkey Construction Equipment Market 2024–2029 (5.3% CAGR)</div>
+            <div class="source-meta">ResearchAndMarkets / BusinessWire, Kasım 2024</div>
+            <a class="source-link" href="https://www.businesswire.com/news/home/20241106496306/en/Turkey-Construction-Equipment-Market-Strategic-Assessment-Forecast-2024-2029" target="_blank">businesswire.com → turkey-construction-equipment-market-2024-2029</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">11</div>
+          <div class="source-info">
+            <div class="source-title">B2B Mobile Roadshow Tours — ROI & Case Studies</div>
+            <div class="source-meta">Pro Motion Inc. / Makai Inc.</div>
+            <a class="source-link" href="https://promotion1.com/b2b-mobile-roadshow-tours/" target="_blank">promotion1.com → b2b-mobile-roadshow-tours</a>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-num">12</div>
+          <div class="source-info">
+            <div class="source-title">Manufacturers Stage Solo Trade Shows with Mobile Showrooms</div>
+            <div class="source-meta">ConventionSouth (Stratasys, Somero vakaları)</div>
+            <a class="source-link" href="https://conventionsouth.com/manufacturers-stage-solo-trade-shows-with-mobile-showrooms/" target="_blank">conventionsouth.com → mobile-showrooms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- NAVİGASYON -->
 <div class="nav">
   <button onclick="prevSlide()">← Geri</button>
   <div class="dots" id="dots"></div>
-  <span class="progress" id="progress">1 / 11</span>
+  <span class="progress" id="progress">1 / 15</span>
   <button onclick="nextSlide()">İleri →</button>
 </div>
 
@@ -1003,7 +1276,6 @@
   const dotsEl = document.getElementById('dots');
   const progressEl = document.getElementById('progress');
 
-  // create dots
   slides.forEach((_, i) => {
     const d = document.createElement('div');
     d.className = 'dot' + (i === 0 ? ' active' : '');
@@ -1018,7 +1290,6 @@
     slides[current].classList.add('active');
     dotsEl.children[current].classList.add('active');
     progressEl.textContent = (current + 1) + ' / ' + total;
-
   }
 
   function nextSlide() { goTo(current + 1); }
