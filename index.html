@@ -579,12 +579,16 @@
     background: var(--bg);
   }
 
+  .slide-sources .slide-body {
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
   .sources-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     width: 100%;
-    overflow: auto;
   }
 
   .source-item {
@@ -630,15 +634,21 @@
   }
 
   .source-link {
-    font-size: 0.7rem;
-    color: var(--orange);
-    text-decoration: none;
+    font-size: 0.72rem;
+    color: var(--orange-lt);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255,107,53,0.4);
     word-break: break-all;
-    opacity: 0.8;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: pointer;
   }
 
-  .source-link:hover { opacity: 1; text-decoration: underline; }
+  .source-link:hover {
+    color: white;
+    text-decoration-color: white;
+  }
 
   /* ── NAVIGATION ── */
   .nav {
