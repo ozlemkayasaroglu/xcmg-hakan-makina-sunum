@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobil Saha Satış Sistemi | XCMG × Hakan Makina</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #F05A1A;
+    --dark: #1A1A1A;
+    --gray: #2C2C2C;
+    --light: #F5F5F5;
+    --white: #FFFFFF;
+    --accent: #FF8C00;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #111;
+    color: var(--white);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .presentation {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0; left: 0;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .slide.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── COVER ── */
+  .slide-cover {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2a1a0e 50%, #1A1A1A 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(240,90,26,0.25) 0%, transparent 70%);
+  }
+
+  .slide-cover .logo-bar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    z-index: 1;
+  }
+
+  .logo-xcmg {
+    background: var(--orange);
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 900;
+    padding: 10px 28px;
+    letter-spacing: 4px;
+    clip-path: polygon(0 0, 96% 0, 100% 50%, 96% 100%, 0 100%, 4% 50%);
+  }
+
+  .logo-divider {
+    width: 2px;
+    height: 60px;
+    background: rgba(255,255,255,0.3);
+  }
+
+  .logo-hakan {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .slide-cover h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .slide-cover h1 span {
+    color: var(--orange);
+    display: block;
+  }
+
+  .slide-cover .subtitle {
+    margin-top: 24px;
+    font-size: 1.35rem;
+    color: rgba(255,255,255,0.65);
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+
+  .slide-cover .tag {
+    margin-top: 40px;
+    background: var(--orange);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+
+  /* ── STANDARD SLIDE ── */
+  .slide-std {
+    flex-direction: column;
+    background: #1A1A1A;
+  }
+
+  .slide-header {
+    background: var(--orange);
+    padding: 22px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .slide-header .slide-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  .slide-header h2 {
+    font-size: 1.7rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .slide-header .brand {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    text-align: right;
+  }
+
+  .slide-body {
+    flex: 1;
+    padding: 50px 60px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    overflow: hidden;
+  }
+
+  /* ── CARDS ── */
+  .cards {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .cards-2 { grid-template-columns: 1fr 1fr; }
+  .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cards-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .card {
+    background: #2a2a2a;
+    border-left: 4px solid var(--orange);
+    padding: 24px 26px;
+    border-radius: 2px;
+  }
+
+  .card .card-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .card p, .card li {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+  }
+
+  .card ul { padding-left: 16px; }
+
+  /* ── BIG STATEMENT ── */
+  .big-statement {
+    text-align: center;
+    width: 100%;
+  }
+
+  .big-statement .quote {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--white);
+  }
+
+  .big-statement .quote span { color: var(--orange); }
+
+  .big-statement .sub {
+    margin-top: 24px;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+  }
+
+  /* ── STEPS ── */
+  .steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 22px;
+    font-size: 1.5rem;
+    color: var(--orange);
+    z-index: 2;
+  }
+
+  .step-num {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+    font-weight: 600;
+    padding: 0 8px;
+  }
+
+  /* ── KPI ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .kpi-box {
+    background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+    border: 1px solid rgba(240,90,26,0.3);
+    border-radius: 4px;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .kpi-box .kpi-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .kpi-box .kpi-val {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .kpi-box .kpi-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+  }
+
+  /* ── BULLET LIST ── */
+  .bullet-list {
+    list-style: none;
+    width: 100%;
+  }
+
+  .bullet-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .bullet-list li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    align-items: start;
+  }
+
+  .col-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--orange);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--orange);
+  }
+
+  /* ── CLOSING ── */
+  .slide-close {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2a1a0e 50%, #1A1A1A 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-close::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 40% 60%, rgba(240,90,26,0.2) 0%, transparent 70%);
+  }
+
+  .slide-close h2 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .slide-close h2 span { color: var(--orange); }
+
+  .slide-close .tagline {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.6);
+    z-index: 1;
+    letter-spacing: 2px;
+  }
+
+  .slide-close .pillars {
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+    z-index: 1;
+  }
+
+  .pillar {
+    background: rgba(240,90,26,0.15);
+    border: 1px solid rgba(240,90,26,0.4);
+    padding: 18px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── NAVIGATION ── */
+  .nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 100;
+    background: rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav button {
+    background: none;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .nav button:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+
+  .nav .progress {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .nav .dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .dot.active {
+    background: var(--orange);
+    width: 20px;
+    border-radius: 4px;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    background: linear-gradient(135deg, rgba(240,90,26,0.15), rgba(240,90,26,0.05));
+    border: 1px solid rgba(240,90,26,0.35);
+    border-radius: 4px;
+    padding: 20px 26px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    text-align: center;
+    width: 100%;
+  }
+
+  .highlight strong { color: var(--orange); font-size: 1.1rem; }
+
+  /* ── ICON GRID ── */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .icon-item {
+    background: #222;
+    padding: 28px 16px;
+    text-align: center;
+    border-top: 3px solid var(--orange);
+  }
+
+  .icon-item .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+  .icon-item p { font-size: 0.9rem; color: rgba(255,255,255,0.75); font-weight: 600; line-height: 1.4; }
+
+  /* ── PILOT ── */
+  .pilot-box {
+    background: linear-gradient(135deg, rgba(240,90,26,0.1), rgba(240,90,26,0.03));
+    border: 2px solid var(--orange);
+    padding: 40px 50px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .pilot-box h3 {
+    font-size: 1.4rem;
+    color: var(--orange);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .pilot-items {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .pilot-item {
+    flex: 1;
+    background: rgba(0,0,0,0.3);
+    padding: 16px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
+  }
+
+  .risk-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 10px 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    body { overflow: visible; height: auto; }
+    .slide { display: block !important; page-break-after: always; height: 100vh; position: relative; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="presentation" id="pres">
+
+  <!-- 1. KAPAK -->
+  <div class="slide slide-cover active" id="slide-1">
+    <div class="logo-bar">
+      <div class="logo-xcmg">XCMG</div>
+      <div class="logo-divider"></div>
+      <div class="logo-hakan">HAKAN MAKİNA</div>
+    </div>
+    <h1>MOBİL SAHA<span>SATIŞ SİSTEMİ</span></h1>
+    <p class="subtitle">Showroom'u Müşterinin Ayağına Götürüyoruz</p>
+    <div class="tag">Saha Satış · Hızlı Teklif · Marka Temsili</div>
+  </div>
+
+  <!-- 2. PROBLEM -->
+  <div class="slide slide-std" id="slide-2">
+    <div class="slide-header">
+      <span class="slide-num">01 / Problem</span>
+      <h2>Neden Bu Sisteme İhtiyacımız Var?</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body">
+      <div class="cards cards-2" style="align-self:stretch">
+        <div class="card">
+          <span class="card-icon">🏚️</span>
+          <h3>Müşteri Gelmiyor</h3>
+          <p>Hedef kitle showroom'u ziyaret etmiyor; köy, kasaba ve şantiyelerde aktif.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">⏳</span>
+          <h3>Uzun Satış Süreci</h3>
+          <p>Geleneksel yöntemle teklif–karar döngüsü haftalar alıyor.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">📉</span>
+          <h3>Sınırlı Görünürlük</h3>
+          <p>Sahada marka temsili zayıf; rakipler daha agresif saha varlığı oluşturuyor.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">⚡</span>
+          <h3>Rakip Baskısı</h3>
+          <p>Rakipler sahada daha aktif; temas fırsatları kaçıyor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ANA MESAJ -->
+  <div class="slide slide-std" id="slide-3">
+    <div class="slide-header">
+      <span class="slide-num">02 / Vizyon</span>
+      <h2>Çözüm: Müşteriye Git</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body" style="justify-content:center">
+      <div class="big-statement">
+        <div class="quote">
+          <span>"Showroom'u</span>
+          müşterinin ayağına götürüyoruz."
+        </div>
+        <p class="sub">Mobil araç · Saha ekibi · Anında teklif · Sahada satış</p>
+        <div style="margin-top:40px;display:flex;gap:24px;justify-content:center">
+          <div class="card" style="text-align:left;max-width:220px">
+            <h3>Ulaş</h3>
+            <p>Showroom'a gelmeyen müşteriye git</p>
+          </div>
+          <div class="card" style="text-align:left;max-width:220px">
+            <h3>Etkilе</h3>
+            <p>Güçlü marka ve ürün deneyimi sun</p>
+          </div>
+          <div class="card" style="text-align:left;max-width:220px">
+            <h3>Sat</h3>
+            <p>Yerinde teklif oluştur, anında kapat</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ZATEN SAHADAYIZ -->
+  <div class="slide slide-std" id="slide-4">
+    <div class="slide-header">
+      <span class="slide-num">03 / Fırsat</span>
+      <h2>Zaten Sahadayız</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:30px">
+      <div class="highlight">
+        Köy, kasaba, şantiye ve hafriyat alanlarında <strong>aktif saha varlığımız</strong> var.<br>
+        Gün içinde <strong>yüksek müşteri temas potansiyelimiz</strong> mevcut.
+      </div>
+      <div class="cards cards-4">
+        <div class="card" style="text-align:center;padding:28px 16px">
+          <span class="card-icon">🏗️</span>
+          <h3>Şantiyeler</h3>
+        </div>
+        <div class="card" style="text-align:center;padding:28px 16px">
+          <span class="card-icon">⛏️</span>
+          <h3>Hafriyat</h3>
+        </div>
+        <div class="card" style="text-align:center;padding:28px 16px">
+          <span class="card-icon">🏘️</span>
+          <h3>Köy & Kasaba</h3>
+        </div>
+        <div class="card" style="text-align:center;padding:28px 16px">
+          <span class="card-icon">🛣️</span>
+          <h3>Altyapı</h3>
+        </div>
+      </div>
+      <div class="highlight" style="background:rgba(240,90,26,0.2);border-color:var(--orange)">
+        <strong>Doğru sistemle bu temas satışa dönüşür.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. NASIL ÇALIŞIR -->
+  <div class="slide slide-std" id="slide-5">
+    <div class="slide-header">
+      <span class="slide-num">04 / Süreç</span>
+      <h2>Nasıl Çalışır?</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:50px">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <p>Sahaya<br>Çıkış</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <p>Mobil Stand<br>Kurulumu</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <p>Birebir<br>Görüşme</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <p>İhtiyaç<br>Analizi</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <p>Anında<br>Teklif</p>
+        </div>
+        <div class="step" style="position:relative">
+          <div class="step-num" style="background:#28a745">6</div>
+          <p>Satış &<br>Sipariş</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. DONANIM -->
+  <div class="slide slide-std" id="slide-6">
+    <div class="slide-header">
+      <span class="slide-num">05 / Donanım</span>
+      <h2>Mobil Mini Showroom</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body">
+      <div class="two-col">
+        <div>
+          <div class="col-title">Mobil Saha Standı</div>
+          <ul class="bullet-list">
+            <li>Hızlı ve pratik kurulum</li>
+            <li>Profesyonel marka alanı</li>
+            <li>Dikkat çekici tasarım</li>
+            <li>Yerinde müşteri deneyimi</li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Araç İçi Donanım</div>
+          <ul class="bullet-list">
+            <li>Katalog ve broşürler</li>
+            <li>Numune ürünler</li>
+            <li>Portatif yazıcı</li>
+            <li>Teklif ve sipariş sistemi</li>
+            <li>Araç giydirme (mobil reklam)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. KAZANIMLAR -->
+  <div class="slide slide-std" id="slide-7">
+    <div class="slide-header">
+      <span class="slide-num">06 / Kazanımlar</span>
+      <h2>Beklenen Kazanımlar</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body">
+      <div class="cards cards-3" style="align-self:stretch">
+        <div class="card">
+          <span class="card-icon">👥</span>
+          <h3>Müşteri</h3>
+          <ul>
+            <li>Daha fazla temas</li>
+            <li>Yeni müşteri kazanımı</li>
+            <li>İyileşen deneyim</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-icon">💰</span>
+          <h3>Satış</h3>
+          <ul>
+            <li>Satış artışı</li>
+            <li>Teklif dönüş oranı ↑</li>
+            <li>Hızlı satış süreci</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏆</span>
+          <h3>Marka</h3>
+          <ul>
+            <li>Güçlü marka algısı</li>
+            <li>Sürekli görünürlük</li>
+            <li>Rakipten ayrışma</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. KPI -->
+  <div class="slide slide-std" id="slide-8">
+    <div class="slide-header">
+      <span class="slide-num">07 / KPI</span>
+      <h2>Performans Göstergeleri</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body" style="flex-direction:column;justify-content:center;gap:30px">
+      <div class="kpi-grid">
+        <div class="kpi-box">
+          <div class="kpi-label">Günlük Ziyaret</div>
+          <div class="kpi-val">—</div>
+          <div class="kpi-sub">Hedef belirlenmeli</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">Günlük Teklif</div>
+          <div class="kpi-val">—</div>
+          <div class="kpi-sub">Hedef belirlenmeli</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">Satış Dönüş Oranı</div>
+          <div class="kpi-val">—%</div>
+          <div class="kpi-sub">Hedef belirlenmeli</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">Aylık Satış Katkısı</div>
+          <div class="kpi-val">—</div>
+          <div class="kpi-sub">Hedef belirlenmeli</div>
+        </div>
+      </div>
+      <div class="highlight">
+        KPI hedefleri pilot çalışma başlamadan önce ekiple birlikte belirlenecektir.
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. PİLOT -->
+  <div class="slide slide-std" id="slide-9">
+    <div class="slide-header">
+      <span class="slide-num">08 / Pilot</span>
+      <h2>1 Aylık Pilot Çalışma</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body" style="justify-content:center">
+      <div class="pilot-box">
+        <h3>Pilot Plan</h3>
+        <div class="pilot-items">
+          <div class="pilot-item">📍 Seçili Bölgelerde<br>Uygulama</div>
+          <div class="pilot-item">📊 Performans<br>Ölçümü</div>
+          <div class="pilot-item">👤 Müşteri &<br>Teklif Takibi</div>
+          <div class="pilot-item">📈 Sonuca Göre<br>Ölçekleme</div>
+        </div>
+        <div class="risk-badge">Düşük Risk · Yüksek Kazanç Modeli</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. NEDEN -->
+  <div class="slide slide-std" id="slide-10">
+    <div class="slide-header">
+      <span class="slide-num">09 / Neden?</span>
+      <h2>Neden Bu Sistem?</h2>
+      <div class="brand">XCMG × Hakan Makina</div>
+    </div>
+    <div class="slide-body">
+      <ul class="bullet-list">
+        <li>Mevcut saha gücünü optimize eder — var olan kaynakları daha verimli kullanır</li>
+        <li>Müşterinin ayağına gider — pasif bekleme yerine aktif ulaşım</li>
+        <li>Rakiplerden ayrıştırır — sahada profesyonel farklılaşma sağlar</li>
+        <li>Marka görünürlüğünü artırır — her saha ziyareti canlı reklama dönüşür</li>
+        <li>Satış sürecini hızlandırır — teklif anında, karar yerinde</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 11. KAPANIŞ -->
+  <div class="slide slide-close" id="slide-11">
+    <h2>Birlikte<br><span>Daha Güçlüyüz.</span></h2>
+    <p class="tagline">XCMG × Hakan Makina · Mobil Saha Satış Sistemi</p>
+    <div class="pillars">
+      <div class="pillar">Daha Fazla<br>Müşteri</div>
+      <div class="pillar">Daha Fazla<br>Satış</div>
+      <div class="pillar">Daha Güçlü<br>Marka</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAVİGASYON -->
+<div class="nav">
+  <button onclick="prevSlide()">← Geri</button>
+  <div class="dots" id="dots"></div>
+  <span class="progress" id="progress">1 / 11</span>
+  <button onclick="nextSlide()">İleri →</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const dotsEl = document.getElementById('dots');
+  const progressEl = document.getElementById('progress');
+
+  // create dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+    progressEl.textContent = (current + 1) + ' / ' + total;
+  }
+
+  function nextSlide() { goTo(current + 1); }
+  function prevSlide() { goTo(current - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') nextSlide();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp') prevSlide();
+  });
+</script>
+</body>
+</html>
